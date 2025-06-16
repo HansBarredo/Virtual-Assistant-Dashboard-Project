@@ -1,0 +1,121 @@
+/* ========== Root Variables ========== */
+:root {
+  --color-primary: #4CAF50;
+  --color-secondary: #F0F4F8;
+  --color-accent: #FF7043;
+  --color-white: #ffffff;
+  --color-black: #1a1a1a;
+  --color-gray: #ccc;
+  --color-light: #f9f9f9;
+  --color-shadow: rgba(0, 0, 0, 0.05);
+
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
+
+  --font-size-base: 16px;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 2rem;
+
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --transition: 0.2s ease-in-out;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  background-color: var(--color-secondary);
+  color: var(--color-black);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-nav {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-md);
+  background-color: var(--color-white);
+  gap: var(--space-sm);
+}
+
+.tab-nav button {
+  background: var(--color-white);
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  padding: 0.5rem 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.tab-nav button:hover {
+  background-color: var(--color-light);
+}
+
+#tabs {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-lg);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+#dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+}
+
+.quote-box {
+  background: var(--color-white);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 6px var(--color-shadow);
+  margin-top: var(--space-md);
+}
+
+/* Additional styles omitted for brevity, assumed to follow similar structure */
+
+
+
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+  .tab-nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  main.dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kanban-board {
+    flex-direction: column;
+  }
+}
+
+
+

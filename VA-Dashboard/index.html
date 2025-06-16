@@ -1,0 +1,30 @@
+// index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>VA Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/src/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="tab-nav">
+    <button data-tab="dashboard">Dashboard</button>
+    <button data-tab="task-planner">Task Planner</button>
+    <button data-tab="forex">Forex</button>
+  </nav>
+
+  <div id="tabs">
+    <div id="dashboard-tab" class="tab-content">
+      <h2>Main Dashboard</h2>
+      <div id="dashboard-grid" class="dashboard-grid"></div>
+      <div id="quote-box" class="mt-4 p-4 bg-gray-100 rounded"></div>
+    </div>
+    <div id="task-planner-tab" class="tab-content hidden"></div>
+    <div id="forex-tab" class="tab-content hidden"></div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
