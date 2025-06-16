@@ -203,6 +203,42 @@ body {
   background: var(--color-accent);
 }
 
+.pomodoro-widget {
+  padding: 16px;
+  background: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 240px;
+  text-align: center;
+}
+
+.pomodoro-widget .timer-display {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  font-family: var(--font-heading);
+}
+
+.pomodoro-widget .timer-controls button {
+  margin: 4px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  background: var(--color-primary);
+  color: var(--color-white);
+  transition: background 0.2s;
+}
+
+.pomodoro-widget .timer-controls button:hover:enabled {
+  background: var(--color-accent);
+}
+
+.pomodoro-widget .timer-controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* =========================
    💡 OTHER MODULES (Placeholder)
    ========================= */
