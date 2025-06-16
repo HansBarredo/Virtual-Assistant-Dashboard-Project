@@ -63,7 +63,7 @@ export function DailyTaskPlanner() {
       if (card && list !== card.parentElement) {
         list.appendChild(card);
 
-        // Move in data
+      
         const taskText = card.querySelector('.task-text').textContent;
         if (oldStatus) {
           taskState[oldStatus] = taskState[oldStatus].filter(task => task.id !== cardId);

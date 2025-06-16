@@ -1,4 +1,4 @@
-const accessKey = '0b6dc1f449f87487ea5ec9e955bd8bd0'; // Replace with your actual key
+const accessKey = '0b6dc1f449f87487ea5ec9e955bd8bd0'; 
 
 export function ForexConverter() {
   const el = document.getElementById('forex-tab');
