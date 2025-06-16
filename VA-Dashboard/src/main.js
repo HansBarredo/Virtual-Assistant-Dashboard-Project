@@ -33,9 +33,9 @@ function initTabs() {
 function loadDashboard() {
   dashboardGrid.innerHTML = '';
   dashboardGrid.appendChild(createPomodoroTimer());
-  // After imports...
 
-// Within loadDashboard (or similar):
+
+
 dashboardGrid.innerHTML = '';
 dashboardGrid.appendChild(createPomodoroTimer());
 dashboardGrid.appendChild(createWorldClock('Asia/Manila', 'Philippines'));
