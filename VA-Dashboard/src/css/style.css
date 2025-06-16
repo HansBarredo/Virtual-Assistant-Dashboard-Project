@@ -2,9 +2,9 @@
    🌱 CSS ROOT VARIABLES
    ========================= */
 :root {
-  --color-primary: #4CAF50;       /* Green for productivity */
-  --color-secondary: #F0F4F8;     /* Light gray/blue */
-  --color-accent: #FF7043;        /* Motivational orange */
+  --color-primary: #4CAF50;      
+  --color-secondary: #F0F4F8;  
+  --color-accent: #FF7043;       
 
   --color-text: #333;
   --color-white: #fff;
@@ -16,9 +16,7 @@
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* =========================
-   🔤 BASE STYLES
-   ========================= */
+
 * {
   margin: 0;
   padding: 0;
@@ -33,9 +31,7 @@ body {
   padding: 20px;
 }
 
-/* =========================
-   📌 NAVIGATION TABS
-   ========================= */
+
 .tab-nav {
   margin-bottom: 20px;
 }
@@ -56,9 +52,7 @@ body {
   background-color: var(--color-accent);
 }
 
-/* =========================
-   🔲 TAB CONTENT SECTIONS
-   ========================= */
+
 .tab-content {
   background-color: var(--color-white);
   padding: 20px;
@@ -71,9 +65,6 @@ body {
   display: none;
 }
 
-/* =========================
-   📋 TASK PLANNER STYLES
-   ========================= */
 .task-columns {
   display: flex;
   gap: 20px;
@@ -103,7 +94,6 @@ body {
 }
 
 
-/* Kanban board wrapper */
 .kanban-board {
   display: flex;
   gap: 16px;
@@ -111,7 +101,7 @@ body {
   padding: 10px 0;
 }
 
-/* Each column */
+
 .kanban-column {
   flex: 0 0 300px;
   background: var(--color-white);
@@ -123,14 +113,14 @@ body {
   max-height: 80vh;
 }
 
-/* Column header */
+
 .kanban-column h3 {
   font-family: var(--font-heading);
   margin-bottom: 8px;
   text-align: center;
 }
 
-/* Task list area */
+
 .task-list {
   flex: 1;
   background: var(--color-secondary);
@@ -139,7 +129,7 @@ body {
   overflow-y: auto;
 }
 
-/* Individual task cards */
+
 .task-card {
   background: var(--color-white);
   margin-bottom: 8px;
@@ -158,7 +148,7 @@ body {
   transform: scale(0.98);
 }
 
-/* Delete button styling */
+
 .delete-task {
   background: transparent;
   border: none;
@@ -174,7 +164,7 @@ body {
   background: #fee;
 }
 
-/* Task form (bottom) */
+
 #kanban-task-form {
   margin-top: 16px;
   display: flex;
@@ -238,6 +228,19 @@ body {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.world-clock {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 200px;
+  margin: 8px;
+  text-align: center;
+}
+.world-clock h3 { margin-bottom: 8px; font-family: 'Montserrat', sans-serif; }
+.clock-time { font-size: 1.5rem; font-family: 'Montserrat', sans-serif; }
+
 
 /* =========================
    💡 OTHER MODULES (Placeholder)
