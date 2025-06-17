@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "content": "Believe you can and you're halfway there.",
+    "author": "Theodore Roosevelt",
+    "category": "Motivation",
+    "tags": ["belief", "self", "success"],
+    "source": "Speech",
+    "year": 1901,
+    "country": "USA",
+    "language": "English"
+  },
+  {
+    "id": 2,
+    "content": "The only limit to our realization of tomorrow is our doubts of today.",
+    "author": "Franklin D. Roosevelt",
+    "category": "Inspiration",
+    "tags": ["future", "doubt", "limit"],
+    "source": "Address",
+    "year": 1945,
+    "country": "USA",
+    "language": "English"
+  },
+  {
+    "id": 3,
+    "content": "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+    "author": "Winston Churchill",
+    "category": "Perseverance",
+    "tags": ["success", "failure", "courage"],
+    "source": "Speech",
+    "year": 1941,
+    "country": "UK",
+    "language": "English"
+  }
+]

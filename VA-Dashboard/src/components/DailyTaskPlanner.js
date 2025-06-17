@@ -1,4 +1,4 @@
-export function DailyTaskPlanner() {
+function DailyTaskPlanner() {
   const el = document.getElementById('task-planner-tab');
   el.innerHTML = `
     <h2>Daily Task Planner (Trello-style)</h2>
@@ -23,7 +23,6 @@ export function DailyTaskPlanner() {
   `;
 
   const taskState = loadTasks();
-
   const form = document.getElementById('kanban-task-form');
   const input = document.getElementById('kanban-task-input');
   const lists = {
@@ -48,6 +47,7 @@ export function DailyTaskPlanner() {
       lists.todo.appendChild(card);
       taskState.todo.push({ id, text: taskText });
       saveTasks(taskState);
+      updateDashboard(taskState);
       input.value = '';
     }
   });
@@ -62,8 +62,6 @@ export function DailyTaskPlanner() {
 
       if (card && list !== card.parentElement) {
         list.appendChild(card);
-
-      
         const taskText = card.querySelector('.task-text').textContent;
         if (oldStatus) {
           taskState[oldStatus] = taskState[oldStatus].filter(task => task.id !== cardId);
@@ -71,41 +69,47 @@ export function DailyTaskPlanner() {
         const newStatus = list.id.replace('-list', '');
         taskState[newStatus].push({ id: cardId, text: taskText });
         saveTasks(taskState);
+        updateDashboard(taskState);
       }
     });
   });
 
-  function createTaskCard(id, text) {
-    const card = document.createElement('div');
-    card.className = 'task-card';
-    card.draggable = true;
-    card.id = id;
+  drawChart(loadTaskCounts());
+  updateDashboard(taskState);
+}
 
-    card.innerHTML = `
-      <span class="task-text">${text}</span>
-      <button class="delete-task" title="Delete task">&times;</button>
-    `;
+function createTaskCard(id, text) {
+  const card = document.createElement('div');
+  card.className = 'task-card';
+  card.draggable = true;
+  card.id = id;
 
-    card.addEventListener('dragstart', (e) => {
-      e.dataTransfer.setData('text/plain', card.id);
-      card.classList.add('dragging');
-    });
+  card.innerHTML = `
+    <span class="task-text">${text}</span>
+    <button class="delete-task" title="Delete task">&times;</button>
+  `;
 
-    card.addEventListener('dragend', () => {
-      card.classList.remove('dragging');
-    });
+  card.addEventListener('dragstart', (e) => {
+    e.dataTransfer.setData('text/plain', card.id);
+    card.classList.add('dragging');
+  });
 
-    card.querySelector('.delete-task').addEventListener('click', () => {
-      const status = getTaskStatus(id, taskState);
-      if (status) {
-        taskState[status] = taskState[status].filter(task => task.id !== id);
-        saveTasks(taskState);
-        card.remove();
-      }
-    });
+  card.addEventListener('dragend', () => {
+    card.classList.remove('dragging');
+  });
 
-    return card;
-  }
+  card.querySelector('.delete-task').addEventListener('click', () => {
+    const status = getTaskStatus(id, loadTasks());
+    if (status) {
+      const taskState = loadTasks();
+      taskState[status] = taskState[status].filter(task => task.id !== id);
+      saveTasks(taskState);
+      updateDashboard(taskState);
+      card.remove();
+    }
+  });
+
+  return card;
 }
 
 function generateId() {
@@ -127,4 +131,71 @@ function loadTasks() {
 
 function saveTasks(state) {
   localStorage.setItem('kanbanTasks', JSON.stringify(state));
+  const taskCounts = {
+    todo: state.todo.length,
+    inProgress: state['in-progress'].length,
+    done: state.done.length
+  };
+  localStorage.setItem('taskCounts', JSON.stringify(taskCounts));
+  drawChart(taskCounts);
 }
+
+function loadTaskCounts() {
+  return JSON.parse(localStorage.getItem('taskCounts')) || {
+    todo: 0,
+    inProgress: 0,
+    done: 0
+  };
+}
+
+function updateDashboard(taskState) {
+  const todoEl = document.getElementById('todo-count');
+  const inProgressEl = document.getElementById('in-progress-count');
+  const doneEl = document.getElementById('done-count');
+  const totalEl = document.getElementById('total-count');
+
+  if (todoEl && inProgressEl && doneEl && totalEl) {
+    todoEl.textContent = taskState.todo.length;
+    inProgressEl.textContent = taskState['in-progress'].length;
+    doneEl.textContent = taskState.done.length;
+    totalEl.textContent =
+      taskState.todo.length +
+      taskState['in-progress'].length +
+      taskState.done.length;
+  }
+}
+
+function drawChart(taskCounts) {
+  const canvas = document.getElementById('task-chart');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const totalTasks = taskCounts.todo + taskCounts.inProgress + taskCounts.done;
+  const colors = ['#f44336', '#ff9800', '#4caf50'];
+  let startAngle = 0;
+
+  [taskCounts.todo, taskCounts.inProgress, taskCounts.done].forEach((count, index) => {
+    if (count === 0) return;
+    const sliceAngle = (count / totalTasks) * 2 * Math.PI;
+
+    ctx.beginPath();
+    ctx.moveTo(100, 100);
+    ctx.arc(100, 100, 80, startAngle, startAngle + sliceAngle);
+    ctx.fillStyle = colors[index];
+    ctx.fill();
+    ctx.stroke();
+
+    startAngle += sliceAngle;
+  });
+}
+
+// ✅ Export all used functions
+export {
+  DailyTaskPlanner,
+  loadTasks,
+  saveTasks,
+  updateDashboard,
+  drawChart,
+  loadTaskCounts
+};

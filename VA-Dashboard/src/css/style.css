@@ -239,8 +239,166 @@ body {
 .world-clock h3 { margin-bottom: 8px; font-family: 'Montserrat', sans-serif; }
 .clock-time { font-size: 1.5rem; font-family: 'Montserrat', sans-serif; }
 
+.world-clock {
+  padding: 1rem;
+  border-radius: 10px;
+  background: #f8f9fa;
+  text-align: center;
+  max-width: 200px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.timezone-input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-family: inherit;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
 
 /* =========================
-   💡 OTHER MODULES (Placeholder)
+   📚 Quote Widget Styles
    ========================= */
-/* You can add Forex styles, Pomodoro, etc. later here */
+.quote-widget {
+  padding: 16px;
+  background-color: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  max-width: 300px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--font-body);
+}
+
+.quote-widget .quote-text {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+.quote-widget .quote-author {
+  text-align: right;
+  font-weight: bold;
+  color: var(--color-primary);
+  font-size: 0.95rem;
+}
+
+.quote-widget .new-quote-btn {
+  padding: 8px 12px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius);
+  font-weight: bold;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  align-self: flex-end;
+}
+
+.quote-widget .new-quote-btn:hover {
+  background-color: var(--color-accent);
+}
+
+.task-overview-card {
+  background: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+  max-width: 320px;
+  text-align: center;
+  font-family: var(--font-body);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.task-overview-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: var(--color-primary);
+}
+
+.task-summary {
+  text-align: left;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.task-summary p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+}
+
+#task-chart {
+  background: transparent;
+  margin-bottom: 12px;
+}
+
+#chart-legend {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.legend-item {
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+}
+
+.calendar-widget {
+  background: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+  text-align: center;
+  max-width: 400px;
+  margin: auto;
+}
+
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.day {
+  background: var(--color-white);
+  padding: 6px;
+  border-radius: var(--radius);
+  text-align: center;
+  box-shadow: var(--shadow);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.day.holiday {
+  background: var(--color-accent);
+  color: var(--color-white);
+  font-weight: bold;
+}
+
+.nav-button {
+  margin: 10px;
+  padding: 6px 12px;
+  font-size: 1rem;
+  border-radius: var(--radius);
+  border: none;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.nav-button:hover {
+  background-color: var(--color-accent);
+}
