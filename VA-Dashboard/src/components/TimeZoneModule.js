@@ -43,7 +43,7 @@ export async function createWorldClock(initialZone = 'Asia/Manila') {
       timeEl.textContent = dt.toLocaleTimeString([], {
         hour: '2-digit',
         minute: '2-digit',
-        hour12: true // change to false for 24-hour format
+        hour12: true 
       });
 
       const seconds = dt.getSeconds();

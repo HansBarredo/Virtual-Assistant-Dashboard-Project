@@ -5,7 +5,7 @@ export async function createCalendarWidget(containerId) {
     return;
   }
 
-  let currentMonth = new Date().getMonth(); // Start with current month
+  let currentMonth = new Date().getMonth(); 
 
   const calendarContainer = document.createElement('div');
   calendarContainer.className = 'calendar-widget';
@@ -21,7 +21,7 @@ export async function createCalendarWidget(containerId) {
   const daysGrid = document.createElement('div');
   daysGrid.className = 'days-grid';
 
-  // 📦 Container for navigation buttons
+
   const navButtonsContainer = document.createElement('div');
   navButtonsContainer.className = 'nav-buttons-container';
 
@@ -35,11 +35,10 @@ export async function createCalendarWidget(containerId) {
   nextButton.className = 'nav-button';
   nextButton.addEventListener('click', () => changeMonth(1));
 
-  // 📎 Append buttons to nav container
+
   navButtonsContainer.appendChild(prevButton);
   navButtonsContainer.appendChild(nextButton);
 
-  // 📎 Append all to calendar
   calendarContainer.appendChild(titleEl);
   calendarContainer.appendChild(countrySelect);
   calendarContainer.appendChild(navButtonsContainer);

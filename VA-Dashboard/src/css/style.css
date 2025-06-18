@@ -59,7 +59,6 @@ body {
   display: none;
 }
 
-/* Kanban Layout */
 
 .task-columns, .kanban-board {
   display: flex;
@@ -123,7 +122,6 @@ body {
   overflow-y: auto;
 }
 
-/* Delete Button */
 .delete-task {
   background: transparent;
   border: none;
@@ -139,7 +137,6 @@ body {
   background: #fee;
 }
 
-/* Add Task Form */
 #kanban-task-form {
   margin-top: 16px;
   display: flex;
@@ -168,7 +165,6 @@ body {
   background: var(--color-accent);
 }
 
-/* General Widget Styling */
 .pomodoro-widget,
 .calendar-widget,
 .task-overview-card,
@@ -184,7 +180,6 @@ body {
   justify-content: space-between;
 }
 
-/* Pomodoro */
 .pomodoro-widget {
   max-height: 280px;
   overflow: hidden;
@@ -225,7 +220,6 @@ body {
   cursor: not-allowed;
 }
 
-/* World Clock */
 .world-clock {
   text-align: center;
 }
@@ -239,7 +233,6 @@ body {
   font-family: inherit;
 }
 
-/* Quote */
 .quote-widget {
   text-align: left;
   gap: 8px;
@@ -277,7 +270,6 @@ body {
   background: var(--color-accent);
 }
 
-/* Task Overview */
 .task-overview-card {
   max-height: 280px;
   overflow: hidden;
@@ -294,11 +286,11 @@ body {
 
 .task-summary-container {
   display: flex;
-  flex-direction: row; /* Ensures horizontal alignment */
+  flex-direction: row; 
   gap: 1rem;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  flex-wrap: wrap; 
 }
 
 .task-summary {
@@ -314,7 +306,7 @@ body {
 
 #chart-legend {
   display: flex;
-  flex-direction: row; /* Aligns legend items in a row */
+  flex-direction: row; 
   gap: 1rem;
   justify-content: center;
   align-items: center;
@@ -326,7 +318,7 @@ body {
   gap: 4px;
   font-weight: 600;
 }
-/* Calendar */
+
 .calendar-widget {
   text-align: center;
   transform: scale(1);
@@ -446,7 +438,6 @@ body {
   margin-bottom: 1rem;
 }
 
-/* Layout Grid */
 .dashboard-grid {
   display: grid;
   gap: 1rem;
@@ -466,7 +457,6 @@ body {
 .world-clock:nth-of-type(3) { grid-area: clock3; }
 .quote-widget { grid-area: quote; }
 
-/* Responsive */
 @media (max-width: 768px) {
   .dashboard-grid {
     grid-template-areas:

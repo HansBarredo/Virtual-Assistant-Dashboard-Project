@@ -1,4 +1,4 @@
-import { loadTasks } from './DailyTaskPlanner.js';
+import { loadTasks } from './TaskManagerModule.js';
 
 export function createTaskOverview() {
   const taskOverviewCard = document.createElement('div');
@@ -7,7 +7,6 @@ export function createTaskOverview() {
   const titleEl = document.createElement('h3');
   titleEl.textContent = 'Task Overview';
 
-  // Create a container for task summary
   const taskSummaryContainer = document.createElement('div');
   taskSummaryContainer.className = 'task-summary-container';
 
@@ -22,7 +21,6 @@ export function createTaskOverview() {
 
   taskSummaryContainer.appendChild(taskSummary);
 
-  // Create the container for the right (chart)
   const chartColumn = document.createElement('div');
   chartColumn.className = 'chart-column';
   chartColumn.style.display = 'flex';
@@ -36,7 +34,6 @@ export function createTaskOverview() {
 
   chartColumn.appendChild(taskChart);
 
-  // Wrap taskSummaryContainer + chartColumn into one row container
   const chartContainer = document.createElement('div');
   chartContainer.className = 'chart-container';
   chartContainer.style.display = 'flex';

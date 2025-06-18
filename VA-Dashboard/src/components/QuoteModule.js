@@ -34,10 +34,9 @@ export async function createQuoteWidget() {
   const quoteLanguage = container.querySelector('.quote-language');
   const button = container.querySelector('.new-quote-btn');
 
-  // Fetch quotes from file
   async function fetchQuotes() {
     try {
-      const response = await fetch('src/js/quotes.json'); // Adjust if needed
+      const response = await fetch('src/js/quotes.json'); 
       const quotes = await response.json();
       return quotes;
     } catch (error) {
@@ -46,7 +45,6 @@ export async function createQuoteWidget() {
     }
   }
 
-  // Display a random quote with full metadata
   async function showRandomQuote() {
     const quotes = await fetchQuotes();
     if (quotes.length > 0) {
@@ -65,10 +63,8 @@ export async function createQuoteWidget() {
     }
   }
 
-  // Button click handler
   button.addEventListener('click', showRandomQuote);
 
-  // Show one on load
   showRandomQuote();
 
   return container;

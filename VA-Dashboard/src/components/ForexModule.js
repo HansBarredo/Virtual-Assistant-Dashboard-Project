@@ -33,12 +33,12 @@ export function ForexConverter() {
         return;
       }
 
-      // Clear placeholder
+  
       toCurrency.innerHTML = '';
 
       const currencies = data.currencies;
       for (const code in currencies) {
-        if (code === 'USD') continue; // Skip USD in to-currency list
+        if (code === 'USD') continue; 
 
         const option = document.createElement('option');
         option.value = code;
@@ -46,7 +46,7 @@ export function ForexConverter() {
         toCurrency.appendChild(option);
       }
 
-      toCurrency.value = 'PHP'; // Default
+      toCurrency.value = 'PHP'; 
       convertBtn.disabled = false;
     })
     .catch(() => {

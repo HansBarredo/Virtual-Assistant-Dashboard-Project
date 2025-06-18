@@ -65,7 +65,6 @@ export function createPomodoroTimer() {
     resetBtn.disabled = true;
   });
 
-  // initialize display
   updateDisplay();
 
   return container;

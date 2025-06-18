@@ -1,7 +1,7 @@
 function DailyTaskPlanner() {
   const el = document.getElementById('task-planner-tab');
   el.innerHTML = `
-    <h2>Daily Task Planner (Trello-style)</h2>
+    <h2>Daily Task Planner</h2>
     <div class="kanban-board">
       <div class="kanban-column" data-status="todo">
         <h3>To Do</h3>
@@ -190,7 +190,6 @@ function drawChart(taskCounts) {
   });
 }
 
-// ✅ Export all used functions
 export {
   DailyTaskPlanner,
   loadTasks,
