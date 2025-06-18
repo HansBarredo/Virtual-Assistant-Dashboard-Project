@@ -5,27 +5,26 @@ export async function createCalendarWidget(containerId) {
     return;
   }
 
-  let currentMonth = new Date().getMonth(); // Start with the current month
+  let currentMonth = new Date().getMonth(); // Start with current month
 
-  // Create Calendar Container
   const calendarContainer = document.createElement('div');
   calendarContainer.className = 'calendar-widget';
 
-  // Dropdown for country selection
   const countrySelect = document.createElement('select');
   countrySelect.id = 'country-select';
   countrySelect.innerHTML = `<option>Loading countries...</option>`;
 
-  // Title
   const titleEl = document.createElement('h3');
   titleEl.id = 'calendar-title';
   titleEl.textContent = `Calendar - ${getMonthName(currentMonth)} 2025`;
 
-  // Days Grid Container
   const daysGrid = document.createElement('div');
   daysGrid.className = 'days-grid';
 
-  // Navigation Buttons
+  // 📦 Container for navigation buttons
+  const navButtonsContainer = document.createElement('div');
+  navButtonsContainer.className = 'nav-buttons-container';
+
   const prevButton = document.createElement('button');
   prevButton.textContent = '← Previous';
   prevButton.className = 'nav-button';
@@ -36,17 +35,19 @@ export async function createCalendarWidget(containerId) {
   nextButton.className = 'nav-button';
   nextButton.addEventListener('click', () => changeMonth(1));
 
-  // Append Elements
+  // 📎 Append buttons to nav container
+  navButtonsContainer.appendChild(prevButton);
+  navButtonsContainer.appendChild(nextButton);
+
+  // 📎 Append all to calendar
   calendarContainer.appendChild(titleEl);
   calendarContainer.appendChild(countrySelect);
-  calendarContainer.appendChild(prevButton);
-  calendarContainer.appendChild(nextButton);
+  calendarContainer.appendChild(navButtonsContainer);
   calendarContainer.appendChild(daysGrid);
   container.appendChild(calendarContainer);
 
-  generateMonth(daysGrid, currentMonth); // Initial render
+  generateMonth(daysGrid, currentMonth);
 
-  // Fetch country list dynamically
   try {
     const response = await fetch('https://date.nager.at/api/v3/AvailableCountries');
     const countries = await response.json();
@@ -55,14 +56,15 @@ export async function createCalendarWidget(containerId) {
       country => `<option value="${country.countryCode}">${country.name}</option>`
     ).join('');
 
-    fetchHolidays(countrySelect.value, currentMonth, daysGrid); // Load holidays
+    fetchHolidays(countrySelect.value, currentMonth, daysGrid);
   } catch (error) {
     console.error("Error fetching country list:", error);
     countrySelect.innerHTML = `<option>Error loading countries</option>`;
   }
 
-  // Fetch holidays when a country is selected
-  countrySelect.addEventListener("change", () => fetchHolidays(countrySelect.value, currentMonth, daysGrid));
+  countrySelect.addEventListener("change", () => {
+    fetchHolidays(countrySelect.value, currentMonth, daysGrid);
+  });
 
   function changeMonth(direction) {
     currentMonth += direction;
@@ -77,7 +79,6 @@ export async function createCalendarWidget(containerId) {
 
 function generateMonth(daysGrid, month) {
   daysGrid.innerHTML = '';
-
   const daysInMonth = new Date(2025, month + 1, 0).getDate();
   for (let day = 1; day <= daysInMonth; day++) {
     const dayDiv = document.createElement('div');
@@ -89,13 +90,12 @@ function generateMonth(daysGrid, month) {
 
 function getMonthName(monthIndex) {
   const months = [
-    "January", "February", "March", "April", "May", "June", 
+    "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
   return months[monthIndex];
 }
 
-// Fetch and highlight holidays
 async function fetchHolidays(countryCode, month, daysGrid) {
   try {
     const response = await fetch(`https://date.nager.at/api/v3/PublicHolidays/2025/${countryCode}`);

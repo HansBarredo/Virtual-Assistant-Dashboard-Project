@@ -1,11 +1,16 @@
 import { createTaskOverview } from './components/taskOverview.js';
-import { DailyTaskPlanner, loadTasks, updateDashboard, drawChart, loadTaskCounts } from './components/DailyTaskPlanner.js';
+import {
+  DailyTaskPlanner,
+  loadTasks,
+  updateDashboard,
+  drawChart,
+  loadTaskCounts
+} from './components/DailyTaskPlanner.js';
 import { createCalendarWidget } from './components/calendarWidget.js';
 import { createWorldClock } from './components/WorldClock.js';
 import { createPomodoroTimer } from './components/Pomodoro.js';
-import { createQuoteWidget } from './components/QuoteWidget.js';
+import { createQuoteWidget } from './components/QuoteWidget.js'; // ✅ Ensure named export
 import { ForexConverter } from './components/ForexConverter.js';
-
 
 const tabs = document.querySelectorAll('.tab-nav button');
 const tabContents = document.querySelectorAll('.tab-content');
@@ -14,7 +19,9 @@ function initTabs() {
   tabs.forEach(btn => {
     btn.addEventListener('click', async () => {
       tabContents.forEach(tc => tc.classList.add('hidden'));
-      document.getElementById(`${btn.dataset.tab}-tab`).classList.remove('hidden');
+      document
+        .getElementById(`${btn.dataset.tab}-tab`)
+        .classList.remove('hidden');
 
       if (btn.dataset.tab === 'dashboard') {
         await loadDashboard();
@@ -33,35 +40,48 @@ async function loadDashboard() {
   const dashboardGrid = document.getElementById('dashboard-grid');
   dashboardGrid.innerHTML = '';
 
+  // Pomodoro
   const pomodoroTimer = await createPomodoroTimer();
+  pomodoroTimer.classList.add('pomodoro-widget');
   dashboardGrid.appendChild(pomodoroTimer);
 
+  // Calendar
+  await createCalendarWidget('dashboard-grid');
+  const calendar = dashboardGrid.lastElementChild;
+  calendar.classList.add('calendar-widget');
+
+  // Task Overview
   const taskOverview = createTaskOverview();
+  taskOverview.classList.add('task-overview-card');
   dashboardGrid.appendChild(taskOverview);
 
+  // Task Stats
   const taskState = loadTasks();
   updateDashboard(taskState);
-
-  // ✅ Add this line to draw chart using current task data
   drawChart(loadTaskCounts());
 
-  await createCalendarWidget('dashboard-grid');
-
+  // World Clocks
   try {
     const manilaClock = await createWorldClock('Asia/Manila', 'Philippines');
     const londonClock = await createWorldClock('Europe/London', 'London');
     const newYorkClock = await createWorldClock('America/New_York', 'New York');
 
-    dashboardGrid.appendChild(manilaClock);
-    dashboardGrid.appendChild(londonClock);
-    dashboardGrid.appendChild(newYorkClock);
+    [manilaClock, londonClock, newYorkClock].forEach(clock => {
+      clock.classList.add('world-clock');
+      dashboardGrid.appendChild(clock);
+    });
   } catch (error) {
     console.error('Failed to load world clocks:', error);
   }
 
-  const quoteWidget = await createQuoteWidget();
-  dashboardGrid.appendChild(quoteWidget);
+  // Quote Widget
+  try {
+    const quoteWidget = await createQuoteWidget();
+    quoteWidget.classList.add('quote-widget');
+    dashboardGrid.appendChild(quoteWidget);
+  } catch (error) {
+    console.error('Failed to load quote widget:', error);
+  }
 }
-
 
 window.addEventListener('DOMContentLoaded', initTabs);
