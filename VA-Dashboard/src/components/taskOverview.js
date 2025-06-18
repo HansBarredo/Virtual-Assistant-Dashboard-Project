@@ -1,8 +1,8 @@
 import { loadTasks } from './TaskManagerModule.js';
 
 export function createTaskOverview() {
-  const taskOverviewCard = document.createElement('div');
-  taskOverviewCard.className = 'task-overview-card';
+  const TaskOverviewModuleCard = document.createElement('div');
+  TaskOverviewModuleCard.className = 'task-overview-card';
 
   const titleEl = document.createElement('h3');
   titleEl.textContent = 'Task Overview';
@@ -43,8 +43,8 @@ export function createTaskOverview() {
   chartContainer.appendChild(taskSummaryContainer);
   chartContainer.appendChild(chartColumn);
 
-  taskOverviewCard.appendChild(titleEl);
-  taskOverviewCard.appendChild(chartContainer);
+  TaskOverviewModuleCard.appendChild(titleEl);
+  TaskOverviewModuleCard.appendChild(chartContainer);
 
-  return taskOverviewCard;
+  return TaskOverviewModuleCard;
 }

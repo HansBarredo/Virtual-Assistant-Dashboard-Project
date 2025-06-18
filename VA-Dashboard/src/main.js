@@ -1,4 +1,4 @@
-import { createTaskOverview } from './components/TAskOverviewModule.js';
+import { createTaskOverview } from './components/taskOverview.js';
 import {
   DailyTaskPlanner,
   loadTasks,
@@ -6,11 +6,11 @@ import {
   drawChart,
   loadTaskCounts
 } from './components/TaskManagerModule.js';
-import { createCalendarWidget } from './components/calendarWidget.js';
+import { createCalendarWidget } from './components/CalendarModule.js';
 import { createWorldClock } from './components/WorldClock.js';
 import { createPomodoroTimer } from './components/FocusTimeModule.js';
-import { createQuoteWidget } from './components/QuoteModule.js'; 
-import { ForexConverter } from './components/ForexConverter.js';
+import { createQuoteWidget } from './components/QuoteModule.js'; // ✅ Ensure named export
+import { ForexConverter } from './components/ForexModule.js';
 
 const tabs = document.querySelectorAll('.tab-nav button');
 const tabContents = document.querySelectorAll('.tab-content');
@@ -40,22 +40,27 @@ async function loadDashboard() {
   const dashboardGrid = document.getElementById('dashboard-grid');
   dashboardGrid.innerHTML = '';
 
+  // Pomodoro
   const pomodoroTimer = await createPomodoroTimer();
   pomodoroTimer.classList.add('pomodoro-widget');
   dashboardGrid.appendChild(pomodoroTimer);
 
+  // Calendar
   await createCalendarWidget('dashboard-grid');
   const calendar = dashboardGrid.lastElementChild;
   calendar.classList.add('calendar-widget');
 
+  // Task Overview
   const taskOverview = createTaskOverview();
   taskOverview.classList.add('task-overview-card');
   dashboardGrid.appendChild(taskOverview);
 
+  // Task Stats
   const taskState = loadTasks();
   updateDashboard(taskState);
   drawChart(loadTaskCounts());
 
+  // World Clocks
   try {
     const manilaClock = await createWorldClock('Asia/Manila', 'Philippines');
     const londonClock = await createWorldClock('Europe/London', 'London');
@@ -69,6 +74,7 @@ async function loadDashboard() {
     console.error('Failed to load world clocks:', error);
   }
 
+  // Quote Widget
   try {
     const quoteWidget = await createQuoteWidget();
     quoteWidget.classList.add('quote-widget');
