@@ -36,7 +36,7 @@ export async function createQuoteWidget() {
 
   async function fetchQuotes() {
     try {
-      const response = await fetch('src/js/quotes.json'); 
+      const response = await fetch('/s/quotes.json'); 
       const quotes = await response.json();
       return quotes;
     } catch (error) {
